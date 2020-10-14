@@ -8,23 +8,23 @@ import { Users } from '../models/users';
 })
 export class UsersService {
 
-  baseUrl: string = "http://localhost:5001/clientes";
+  baseUrl: string = "http://localhost:5001/clientes/";
 
   constructor(private http: HttpClient) { }
 
-  createUser(model: Users) {
-    return this.http.post(this.baseUrl, model);
+  createUser(model: Users): Observable<Users> {
+    return this.http.post<Users>(this.baseUrl, model);
   }
 
   getUsers(): Observable<Users[]> {
     return this.http.get<Users[]>(this.baseUrl);
   }
 
-  editUsers(model: Users): Observable<Users> {
-    return this.http.put<Users>(this.baseUrl + model.id, model);
+  updateUsers(userID: number | string, changes: Partial<Users>): Observable<Users> {
+    return this.http.put<Users>(this.baseUrl + userID, changes);
   }
 
-  deleteUsers(userId: number) {
+  deleteUsers(userId: number | string) {
     return this.http.delete(this.baseUrl + userId);
   }
 }

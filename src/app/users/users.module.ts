@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StoreModule } from '@ngrx/store';
-import * as fromUserState from './store';
+import { FormsModule } from "@angular/forms";
 import { UsersListComponent } from './components/users-list/users-list.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromUsers from './store/users.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { UserEffectEffects } from './store/user-effect.effects';
+import { UsersEffects } from './store/users.effects';
+import { UsersAddComponent } from './components/users-add/users-add.component';
+import { UsersEditComponent } from './components/users-edit/users-edit.component';
 
 @NgModule({
-  declarations: [UsersListComponent],
+  declarations: [UsersListComponent, UsersAddComponent, UsersEditComponent],
   imports: [
     CommonModule,
-    StoreModule.forFeature(fromUserState.userStateFeatureKey, fromUserState.reducers, { metaReducers: fromUserState.metaReducers }),
-    EffectsModule.forFeature([UserEffectEffects])
+    FormsModule,
+    StoreModule.forFeature(fromUsers.usersesFeatureKey, fromUsers.reducer),
+    EffectsModule.forFeature([UsersEffects])
   ],
-  exports: [UsersListComponent]
+  exports: [UsersListComponent,UsersAddComponent]
 })
 export class UsersModule { }

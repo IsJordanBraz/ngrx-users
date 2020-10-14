@@ -4,8 +4,11 @@ import { Observable } from 'rxjs';
 
 import { Users } from '../../models/users';
 import { UsersService } from '../../services/users.service';
-import { selectUsers, selectUsersFeature, UsersState } from '../../store';
-import * as fromActions from '../../store/user.actions';
+import { UserState } from '../../store/users.reducer';
+import { loadUserss, deleteUsers } from '../../store/users.actions';
+import { selectUsers } from '../../store/users.selecters';
+
+
 
 @Component({
   selector: 'app-users-list',
@@ -16,15 +19,19 @@ export class UsersListComponent implements OnInit {
 
   users$: Observable<Users[]>;
 
-  constructor(private usersService: UsersService, private store: Store<UsersState>) { }
+  constructor(private usersService: UsersService, private store: Store<UserState>) { }
 
   ngOnInit(): void {
-    this.store.dispatch(fromActions.loadUsers());
+    this.store.dispatch(loadUserss());
     this.loadUsers();
   }
 
   loadUsers() {
     this.users$ = this.store.pipe(select(selectUsers))
+  }
+
+  deleteUsers(id: string) {
+    this.store.dispatch(deleteUsers({ id }))
   }
 
 }
