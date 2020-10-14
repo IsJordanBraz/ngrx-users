@@ -1,7 +1,26 @@
-<p>users-list works!</p>
-<p>ola</p>
+<h4>Lista de Clientes</h4>
 
-<button (click)="deleteUsers('6')">Click me!</button>
-<div *ngFor="let user of users$ | async">
-    <p>{{user.nome}}</p>
-</div>
+<table class="table">
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Email</th>
+        <th scope="col">Cpf</th>
+        <th scope="col">Opções</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let user of users$ | async">
+        <tr>
+        <th scope="row">{{user.id}}</th>
+        <td>{{user.nome}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.cpf}}</td>
+        <td>
+            <button type="button" class="btn btn-info">Update</button>
+            <button type="button" class="btn btn-danger"
+                (click)="deleteUsers(user.id)">Delete</button>
+        </td>
+        </tr>
+    </tbody>
+</table>

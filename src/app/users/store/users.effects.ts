@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Router } from "@angular/router";
 import { of } from 'rxjs';
-import { map, mergeMap, catchError, concatMap } from 'rxjs/operators';
+import { map, mergeMap, catchError, concatMap, tap } from 'rxjs/operators';
 import { UsersService } from '../services/users.service';
 import * as fromUsersActions from './users.actions';
+
 
 @Injectable()
 export class UsersEffects {
@@ -18,13 +20,16 @@ export class UsersEffects {
     )
   );
 
-  addUsers$ = createEffect(() => this.actions$.pipe(
-    ofType(fromUsersActions.addUsers),
-    mergeMap(action => this.usersService.createUser(action.users)
-      .pipe(
-        map(users => fromUsersActions.addUsersSuccess({ users })),
-        catchError(error => of(fromUsersActions.addUsersFailure({error})))
-      ))
+  addUsers$ = createEffect(() => 
+    this.actions$.pipe(
+      ofType(fromUsersActions.addUsers),
+      mergeMap(action => this.usersService.createUser(action.users)
+        .pipe(
+          map(users => fromUsersActions.addUsersSuccess({ users })),
+          catchError(error => of(fromUsersActions.addUsersFailure({error})))
+        )
+      ),
+      tap(() => this.router.navigate(["/"]))
     )
   );
 
@@ -48,7 +53,8 @@ export class UsersEffects {
 
   constructor(
     private actions$: Actions, 
-    private usersService: UsersService
+    private usersService: UsersService,
+    private router: Router
   ) {}
 
 }
