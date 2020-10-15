@@ -1,1 +1,39 @@
-<p>users-edit works!</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-5 mt-4">
+            <h4>ATUALIZAR CLIENTE</h4>
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+                <div class="form-group">
+                    <input type="text"
+                        ngModel
+                        required
+                        name="nome"
+                        class="form-control"
+                        id="nome"
+                        placeholder="NOME COMPLETO">
+                </div>
+                <div class="form-group">
+                    <input type="email"
+                        ngModel
+                        required
+                        name="email"
+                        class="form-control"
+                        id="email"
+                        placeholder="EMAIL">
+                </div>
+                <div class="form-group">
+                    <input type="text"
+                        ngModel
+                        required
+                        name="cpf"
+                        class="form-control"
+                        id="cpf"
+                        placeholder="CPF">
+                </div>
+                <button class="btn btn-success m-1"
+                    type="submit"
+                    [disabled]="f.invalid">CONTINUAR</button>
+            </form>        
+        </div>
+    </div>
+</div>

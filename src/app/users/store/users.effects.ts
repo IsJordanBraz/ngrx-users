@@ -20,23 +20,44 @@ export class UsersEffects {
     )
   );
 
-  addUsers$ = createEffect(() => 
+  createUsers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromUsersActions.addUsers),
-      mergeMap(action => this.usersService.createUser(action.users)
-        .pipe(
+      mergeMap(action =>
+        this.usersService.createUser(action.users).pipe(
           map(users => fromUsersActions.addUsersSuccess({ users })),
-          catchError(error => of(fromUsersActions.addUsersFailure({error})))
+          catchError(error =>
+            of(fromUsersActions.addUsersFailure({ error }))
+          )
         )
       ),
       tap(() => this.router.navigate(["/"]))
     )
   );
+  
+  // createUsers$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(fromUsersActions.addUsers),
+  //     mergeMap(action =>
+  //       this.usersService.createUser(action.users).pipe(
+  //         map(users => fromUsersActions.addUsersSuccess({ users })),
+  //         catchError(error =>
+  //           of(fromUsersActions.addUsersFailure({ error }))
+  //         )
+  //       )
+  //     ),
+  //     tap(() => this.router.navigate(["/"]))
+  //   )
+  // );
 
   updateUsers$ = createEffect(() => 
     this.actions$.pipe(
       ofType(fromUsersActions.updateUsers),
-      concatMap(action => this.usersService.updateUsers(action.users.id, action.users.changes)),
+      concatMap(action => this.usersService.updateUsers(
+        action.users.id, 
+        action.users.changes)
+      ),
+      tap(() => this.router.navigate(["/"]))
     ),
     { dispatch: false }
   )

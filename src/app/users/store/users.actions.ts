@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { Users } from '../models/users';
+import { User } from '../models/users';
 
 export const loadUserss = createAction(
   '[Users List Component] Load Userss'
@@ -9,7 +9,7 @@ export const loadUserss = createAction(
 
 export const loadUserssSucess = createAction(
   '[Users List Effect] Load Userss Sucess',
-  props<{ userss: Users[] }>()
+  props<{ userss: User[] }>()
 );
 
 export const loadUserssFailure = createAction(
@@ -17,15 +17,14 @@ export const loadUserssFailure = createAction(
   props<{ error: any }>()
 );
 
-// ADD USERS 
 export const addUsers = createAction(
   '[Users Add Component] Add Users',
-  props<{ users: Users }>()
+  props<{ users: User }>()
 );
 
 export const addUsersSuccess = createAction(
   '[Users Add Effect] Add Users Success',
-  props<{ users: Users }>()
+  props<{ users: User }>()
 );
 
 export const addUsersFailure = createAction(
@@ -35,7 +34,7 @@ export const addUsersFailure = createAction(
 
 export const updateUsers = createAction(
   '[Users Edit Component] Update Users',
-  props<{ users: Update<Users> }>()
+  props<{ users: Update<User> }>()
 );
 
 export const deleteUsers = createAction(
@@ -51,30 +50,3 @@ export const deleteUsersFailure = createAction(
   '[Users Delete Effect] Delete Users Failure',
   props<{ error: any }>()
 );
-// export const updateUserss = createAction(
-//   '[Users/API] Update Userss',
-//   props<{ userss: Update<Users>[] }>()
-// );
-
-// export const upsertUsers = createAction(
-//   '[Users/API] Upsert Users',
-//   props<{ users: Users }>()
-// );
-
-// export const addUserss = createAction(
-//   '[Users/API] Add Userss',
-//   props<{ userss: Users[] }>()
-// );
-
-// export const upsertUserss = createAction(
-//   '[Users/API] Upsert Userss',
-//   props<{ userss: Users[] }>()
-// );
-// export const deleteUserss = createAction(
-//   '[Users/API] Delete Userss',
-//   props<{ ids: string[] }>()
-// );
-
-// export const clearUserss = createAction(
-//   '[Users/API] Clear Userss'
-// );

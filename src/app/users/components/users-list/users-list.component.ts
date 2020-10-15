@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Users } from '../../models/users';
+import { User } from '../../models/users';
 import { UsersService } from '../../services/users.service';
 import { UserState } from '../../store/users.reducer';
 import { loadUserss, deleteUsers } from '../../store/users.actions';
@@ -17,7 +17,8 @@ import { selectUsers } from '../../store/users.selecters';
 })
 export class UsersListComponent implements OnInit {
 
-  users$: Observable<Users[]>;
+  users$: Observable<User[]>;
+  // users$: Observable<User[]> = this.store.select(state => state.users);
 
   constructor(private usersService: UsersService, private store: Store<UserState>) { }
 
