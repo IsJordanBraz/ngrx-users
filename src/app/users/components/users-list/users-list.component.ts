@@ -3,12 +3,9 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { User } from '../../models/users';
-import { UsersService } from '../../services/users.service';
-import { UserState } from '../../store/users.reducer';
-import { loadUserss, deleteUsers } from '../../store/users.actions';
-import { selectUsers } from '../../store/users.selecters';
-
-
+import { UserState } from '../../store/user.reducer';
+import { loadUsers, deleteUser } from '../../store/user.actions';
+import { selectUsers } from '../../store/user.selecters';
 
 @Component({
   selector: 'app-users-list',
@@ -18,12 +15,11 @@ import { selectUsers } from '../../store/users.selecters';
 export class UsersListComponent implements OnInit {
 
   users$: Observable<User[]>;
-  // users$: Observable<User[]> = this.store.select(state => state.users);
 
-  constructor(private usersService: UsersService, private store: Store<UserState>) { }
+  constructor(private store: Store<UserState>) { }
 
   ngOnInit(): void {
-    this.store.dispatch(loadUserss());
+    this.store.dispatch(loadUsers());
     this.loadUsers();
   }
 
@@ -32,7 +28,7 @@ export class UsersListComponent implements OnInit {
   }
 
   deleteUsers(id: string) {
-    this.store.dispatch(deleteUsers({ id }))
+    this.store.dispatch(deleteUser({ id }))
   }
 
 }

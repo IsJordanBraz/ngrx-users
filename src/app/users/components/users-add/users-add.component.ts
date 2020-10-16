@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { Store } from '@ngrx/store';
 
-import { addUsers } from '../../store/users.actions';
-import { UserState } from '../../store/users.reducer';
+import { addUser } from '../../store/user.actions';
+import { UserState } from '../../store/user.reducer';
 
 @Component({
   selector: 'app-users-add',
@@ -17,7 +17,7 @@ export class UsersAddComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit(f: NgForm) {
-    this.store.dispatch(addUsers({ users: f.value }))
+    this.store.dispatch(addUser({ user: f.value }))
   }
 
 }

@@ -1,27 +1,30 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { User } from '../models/users';
-import * as UsersActions from './users.actions';
 
-export const usersesFeatureKey = 'userses';
+import { User } from '../models/users';
+import * as UsersActions from './user.actions';
+
+export const usersesFeatureKey = 'users';
 
 export interface UserState extends EntityState<User> {
-  error: any
+  error: any;
+  selectedUser: User;
 }
 
 export const adapter: EntityAdapter<User> = createEntityAdapter<User>();
 
 export const initialState: UserState = adapter.getInitialState({
   error: undefined,
+  selectedUser: undefined
 });
 
 
 export const reducer = createReducer(
   initialState,
-  on(UsersActions.addUsersSuccess, (state, action) => 
-    adapter.addOne(action.users, state),
+  on(UsersActions.addUserSuccess, (state, action) => 
+    adapter.addOne(action.user, state),
   ),
-  on(UsersActions.addUsersFailure,
+  on(UsersActions.addUserFailure,
     (state, action) => {
       return {
         ...state,
@@ -29,10 +32,10 @@ export const reducer = createReducer(
       }
     }
   ),
-  on(UsersActions.loadUserssSucess,
-    (state, action) => adapter.setAll(action.userss, state)
+  on(UsersActions.loadUsersSucess,
+    (state, action) => adapter.setAll(action.users, state)
   ),
-  on(UsersActions.loadUserssFailure,
+  on(UsersActions.loadUsersFailure,
     (state, action) => {
       return {
         ...state,
@@ -40,13 +43,29 @@ export const reducer = createReducer(
       }
     }
   ),  
-  on(UsersActions.updateUsers,
-    (state, action) => adapter.updateOne(action.users, state)
+  on(UsersActions.loadUserSuccess,
+    (state, action) => {
+      return {
+        ...state,
+        selectedUser: action.selectedUser
+      }
+    }
+  ),
+  on(UsersActions.loadUserFailure,
+    (state, action) => {
+      return {
+        ...state,
+        error: action.error
+      }
+    }
+  ),
+  on(UsersActions.updateUser,
+    (state, action) => adapter.updateOne(action.user, state)
   ),  
-  on(UsersActions.deleteUsersSuccess,
+  on(UsersActions.deleteUserSuccess,
     (state, action) => adapter.removeOne(action.id, state)
   ),
-  on(UsersActions.deleteUsersFailure,
+  on(UsersActions.deleteUserFailure,
     (state, action) => {
       return {
         ...state,

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
-import { UsersEffects } from './users.effects';
+import { UsersEffects } from './user.effects';
 
 describe('UsersEffects', () => {
   let actions$: Observable<any>;

@@ -20,6 +20,11 @@ export class UsersService {
     return this.http.get<User[]>(this.baseUrl);
   }
 
+  getUser(userID: number | string): Observable<User> {
+    return this.http.get<User>(this.baseUrl + userID);
+  }
+
+
   updateUsers(userID: number | string, changes: Partial<User>): Observable<User> {
     return this.http.put<User>(this.baseUrl + userID, changes);
   }
