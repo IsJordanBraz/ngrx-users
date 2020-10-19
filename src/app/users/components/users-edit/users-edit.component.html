@@ -2,38 +2,45 @@
     <div class="row justify-content-center">
         <div class="col-5 mt-4">
             <h4>ATUALIZAR CLIENTE</h4>
-            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngFor="let use of model">
                 <div class="form-group">
-                    <input type="text"
-                        ngModel
-                        required
+                    <input [class.is-invalid]="!nome.valid && nome.touched" required
+                        [ngModel]="use.nome" #nome="ngModel" 
+                        type="text"           
                         name="nome"
                         class="form-control"
                         id="nome"
                         placeholder="NOME COMPLETO">
+                    <div id="nome" class="invalid-feedback">
+                        Nome é obrigatorio.
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="email"
-                        ngModel
-                        required
+                    <input [class.is-invalid]="!email.valid && email.touched" required
+                        [ngModel]="use.email" #email="ngModel" email
                         name="email"
                         class="form-control"
                         id="email"
                         placeholder="EMAIL">
+                    <div id="email" class="invalid-feedback">
+                        Email inválido.
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="text"
-                        ngModel maxlength="11"
-                        required
+                    <input [class.is-invalid]="!cpf.valid && cpf.touched" required
+                        [ngModel]="use.cpf" #cpf="ngModel"
                         name="cpf"
                         class="form-control"
                         id="cpf"
                         placeholder="CPF">
+                    <div id="cpf" class="invalid-feedback">
+                        Cpf é obrigatorio.
+                    </div>
                 </div>
                 <button class="btn btn-success m-1"
                     type="submit"
                     [disabled]="f.invalid">CONTINUAR</button>
-            </form>        
+            </form>  
         </div>
     </div>
 </div>

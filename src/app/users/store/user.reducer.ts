@@ -11,7 +11,13 @@ export interface UserState extends EntityState<User> {
   selectedUser: User;
 }
 
-export const adapter: EntityAdapter<User> = createEntityAdapter<User>();
+export function selectUserId(user: User): number {
+  return user.id;
+}
+
+export const adapter: EntityAdapter<User> = createEntityAdapter<User>({
+  selectId: selectUserId
+});
 
 export const initialState: UserState = adapter.getInitialState({
   error: undefined,

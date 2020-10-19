@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Update } from '@ngrx/entity';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -18,7 +18,6 @@ import { selectedUser } from '../../store/user.selecters';
 export class UsersEditComponent implements OnInit {
 
   model: any;
-  user$: Observable<User>
 
   constructor(
     private route: ActivatedRoute,
@@ -27,26 +26,17 @@ export class UsersEditComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(loadUser({ id: this.route.snapshot.paramMap.get("id") }));
-
-    this.user$ =  this.store.pipe(select(selectedUser));
-    
     this.store.pipe(select(selectedUser)).subscribe(user => 
       this.model = user
     );
     
   }
 
-  onSubmit(f: NgForm) {
-
-    let userId= {
-      "id": this.model[0].id
-    }
-
-    let totalteste = Object.assign(userId, f.value );
+  onSubmit(form: NgForm) {
 
     const update: Update<User> = {
-      id: this.route.snapshot.paramMap.get("id"),
-      changes: totalteste
+      id: this.model[0].id,
+      changes: form.value
     }
     
     this.store.dispatch(updateUser({ user: update }))

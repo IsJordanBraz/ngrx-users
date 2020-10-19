@@ -5,30 +5,48 @@
             <form #f="ngForm" (ngSubmit)="onSubmit(f)">
                 <div class="form-group">
                     <input type="text"
+                        [class.is-invalid]="!nome.valid && nome.touched"
+                        #nome="ngModel"
                         ngModel
                         required
                         name="nome"
                         class="form-control"
                         id="nome"
-                        placeholder="NOME COMPLETO">
+                        placeholder="NOME COMPLETO"
+                    >
+                    <div id="nome" class="invalid-feedback">
+                        Nome é obrigatorio.
+                    </div>
                 </div>
                 <div class="form-group">
                     <input type="email"
-                        ngModel
+                        #email="ngModel"
+                        [class.is-invalid]="!email.valid && email.touched"
+                        ngModel email
                         required
                         name="email"
                         class="form-control"
                         id="email"
-                        placeholder="EMAIL">
+                        placeholder="EMAIL"
+                    >
+                    <div id="email" class="invalid-feedback">
+                        Email inválido.
+                    </div>
                 </div>
                 <div class="form-group">
                     <input type="text"
+                        #cpf="ngModel"
+                        [class.is-invalid]="!cpf.valid && cpf.touched"
                         ngModel
                         required
                         name="cpf"
                         class="form-control"
                         id="cpf"
-                        placeholder="CPF">
+                        placeholder="CPF"
+                    >
+                    <div id="cpf" class="invalid-feedback">
+                        Cpf é obrigatorio.
+                    </div>
                 </div>
                 <button class="btn btn-success m-1"
                     type="submit"
