@@ -4,8 +4,11 @@
             <h4>ATUALIZAR CLIENTE</h4>
             <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngFor="let use of model">
                 <div class="form-group">
-                    <input [class.is-invalid]="!nome.valid && nome.touched" required
-                        [ngModel]="use.nome" #nome="ngModel" 
+                    <input 
+                        [class.is-invalid]="!nome.valid && nome.touched" 
+                        required
+                        [ngModel]="use.nome" 
+                        #nome="ngModel" 
                         type="text"           
                         name="nome"
                         class="form-control"
@@ -16,8 +19,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input [class.is-invalid]="!email.valid && email.touched" required
-                        [ngModel]="use.email" #email="ngModel" email
+                    <input 
+                        [class.is-invalid]="!email.valid && email.touched" 
+                        [ngModel]="use.email" 
+                        #email="ngModel" 
+                        email 
+                        required
                         name="email"
                         class="form-control"
                         id="email"
@@ -27,8 +34,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input [class.is-invalid]="!cpf.valid && cpf.touched" required
-                        [ngModel]="use.cpf" #cpf="ngModel"
+                    <input 
+                        [class.is-invalid]="!cpf.valid && cpf.touched" 
+                        [ngModel]="use.cpf" 
+                        #cpf="ngModel"
+                        required
                         name="cpf"
                         class="form-control"
                         id="cpf"
@@ -37,9 +47,9 @@
                         Cpf é obrigatorio.
                     </div>
                 </div>
-                <button class="btn btn-success m-1"
-                    type="submit"
-                    [disabled]="f.invalid">CONTINUAR</button>
+                <button class="btn btn-success m-1" type="submit" 
+                    [disabled]="f.invalid">CONTINUAR
+                </button>
             </form>  
         </div>
     </div>

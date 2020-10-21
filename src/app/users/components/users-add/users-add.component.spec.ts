@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
 
 import { UsersAddComponent } from './users-add.component';
+import * as fromUserReducer from '../../store/user.reducer';
+import { FormsModule } from '@angular/forms';
 
 describe('UsersAddComponent', () => {
   let component: UsersAddComponent;
@@ -8,7 +11,11 @@ describe('UsersAddComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UsersAddComponent ]
+      declarations: [ UsersAddComponent ],
+      imports: [
+        StoreModule.forRoot(fromUserReducer.reducer),
+        FormsModule
+      ],
     })
     .compileComponents();
   });

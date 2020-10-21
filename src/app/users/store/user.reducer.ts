@@ -25,54 +25,49 @@ export const initialState: UserState = adapter.getInitialState({
 });
 
 
-export const reducer = createReducer(
+const usersReducer = createReducer(
   initialState,
   on(UsersActions.addUserSuccess, (state, action) => 
     adapter.addOne(action.user, state),
   ),
-  on(UsersActions.addUserFailure,
-    (state, action) => {
+  on(UsersActions.addUserFailure, (state, action) => {
       return {
         ...state,
         error: action.error
       }
     }
   ),
-  on(UsersActions.loadUsersSucess,
-    (state, action) => adapter.setAll(action.users, state)
+  on(UsersActions.loadUsersSucess, (state, action) => 
+    adapter.setAll(action.users, state)
   ),
-  on(UsersActions.loadUsersFailure,
-    (state, action) => {
+  on(UsersActions.loadUsersFailure, (state, action) => {
       return {
         ...state,
         error: action.error
       }
     }
   ),  
-  on(UsersActions.loadUserSuccess,
-    (state, action) => {
+  on(UsersActions.loadUserSuccess, (state, action) => {
       return {
         ...state,
         selectedUser: action.selectedUser
       }
     }
   ),
-  on(UsersActions.loadUserFailure,
-    (state, action) => {
+  on(UsersActions.loadUserFailure, (state, action) => {
       return {
         ...state,
         error: action.error
       }
     }
   ),
-  on(UsersActions.updateUser,
-    (state, action) => adapter.updateOne(action.user, state)
+  on(UsersActions.updateUser, (state, action) => 
+    adapter.updateOne(action.user, state)
   ),  
-  on(UsersActions.deleteUserSuccess,
-    (state, action) => adapter.removeOne(action.id, state)
+  on(UsersActions.deleteUserSuccess, (state, action) => 
+    adapter.removeOne(action.id, state)
   ),
-  on(UsersActions.deleteUserFailure,
-    (state, action) => {
+  on(UsersActions.deleteUserFailure, (state, action) => {
       return {
         ...state,
         error: action.error
@@ -80,6 +75,10 @@ export const reducer = createReducer(
     }
   ),
 );
+
+export function reducer(state: UserState | undefined, action: Action) {
+  return usersReducer(state, action);
+}
 
 export const {
   selectIds,
