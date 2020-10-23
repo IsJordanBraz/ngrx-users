@@ -17,7 +17,7 @@ import { selectedUser } from '../../store/user.selecters';
 })
 export class UsersEditComponent implements OnInit {
 
-  model: any;
+  selectedUser: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,20 +26,15 @@ export class UsersEditComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(loadUser({ id: this.route.snapshot.paramMap.get("id") }));
-    this.store.pipe(select(selectedUser)).subscribe(user => 
-      this.model = user
-    );
-    
+    this.store.select(selectedUser).subscribe(user => this.selectedUser = user);
   }
 
   onSubmit(form: NgForm) {
-
     const update: Update<User> = {
-      id: this.model[0].id,
+      id: this.selectedUser[0].id,
       changes: form.value
     }
-    
+
     this.store.dispatch(updateUser({ user: update }))
   }
-
 }

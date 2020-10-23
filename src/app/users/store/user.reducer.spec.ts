@@ -5,10 +5,24 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { TestBed } from '@angular/core/testing';
 import { Update } from '@ngrx/entity';
 
-const teste = 'ola';
+const usersList: User[] = [
+  { 
+    id: 1, 
+    nome: 'jordan', 
+    cpf: '21.699.461-5', 
+    email: 'jordan@gmail'
+  },
+  { 
+    id: 2,
+    nome: 'Jordan Braz', 
+    cpf: '21.699.461-5', 
+    email: 'jordan@gmail'
+  }
+];
 
 describe('Users Reducer', () => {
   let store: MockStore;
+  const loadedUsersState = fromUserActions.loadUsersSucess({ users: usersList});
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -32,22 +46,8 @@ describe('Users Reducer', () => {
 
   describe('loadUsersSuccess Action', () => {
     it('should load a list of users', () => {
-      const usersList: User[] = [
-        { 
-          id: 1, 
-          nome: 'jordan', 
-          cpf: '21.699.461-5', 
-          email: 'jordan@gmail'
-        },
-        { 
-          id: 2,
-          nome: 'Jordan Braz', 
-          cpf: '21.699.461-5', 
-          email: 'jordan@gmail'
-        }
-      ];
       const action = fromUserActions.loadUsersSucess({ users: usersList});
-      const result = reducer(initialState, action);   
+      const result = reducer(initialState, action);
 
       expect(result.entities[1]).toBe(usersList[0])
       expect(result.entities[2]).toBe(usersList[1])
@@ -56,28 +56,23 @@ describe('Users Reducer', () => {
 
   describe('AddUserSuccess Action', () => {
     it('should add a new user', () => {
-      const newUser: User = { 
-        id: 1, 
-        nome: 'jordan', 
-        cpf: '21.699.461-5', 
-        email: 'jordan@gmail'
+      const addUser: User = {
+        id: 1,
+        nome: 'jordan',
+        cpf: '21.699.461-5',
+        email: 'jordan@gmail' 
       };
-      const action = fromUserActions.addUserSuccess({ user: newUser});
+      const action = fromUserActions.addUserSuccess({ user: addUser});
       const result = reducer(initialState, action);    
-      expect(result.entities[1]).toBe(newUser)
+      expect(result.entities[1]).toBe(addUser)
     });
   }); 
 
   describe('UpdateUser Action', () => {
     it('should add a new user', () => {
-      const newUser: User = { 
-        id: 1, 
-        nome: 'jordan', 
-        cpf: '21.699.461-5', 
-        email: 'jordan@gmail'
-      };
-      const action = fromUserActions.addUserSuccess({ user: newUser});
-      const newState = reducer(initialState, action); 
+      const action = fromUserActions.loadUsersSucess({ users: usersList});
+      const loadUsers = reducer(initialState, action);
+
       const updateUser: User = { 
         id: 1, 
         nome: 'Jordan Paiva', 
@@ -89,28 +84,15 @@ describe('Users Reducer', () => {
         changes: updateUser
       }
       const action1 = fromUserActions.updateUser({ user: update });      
-      const result = reducer(newState, action1);    
+      const result = reducer(loadUsers, action1);    
+
       expect(result.entities[1]).toEqual(updateUser)
-      expect(result.entities[1]).not.toEqual(newUser)
+      expect(result.entities[1]).not.toEqual(loadUsers[0])
     });
   }); 
 
   describe('deleteUser Action', () => {
     it('should delete a user', () => {
-      const usersList: User[] = [
-        { 
-          id: 1, 
-          nome: 'jordan', 
-          cpf: '21.699.461-5', 
-          email: 'jordan@gmail'
-        },
-        { 
-          id: 2,
-          nome: 'Jordan Braz', 
-          cpf: '21.699.461-5', 
-          email: 'jordan@gmail'
-        }
-      ];
       const action = fromUserActions.loadUsersSucess({ users: usersList});
       const loadUsers = reducer(initialState, action);   
 

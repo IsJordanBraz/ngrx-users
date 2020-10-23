@@ -2,12 +2,12 @@
     <div class="row justify-content-center">
         <div class="col-5 mt-4">
             <h4>ATUALIZAR CLIENTE</h4>
-            <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngFor="let use of model">
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngFor="let item of selectedUser | keyvalue">
                 <div class="form-group">
                     <input 
                         [class.is-invalid]="!nome.valid && nome.touched" 
                         required
-                        [ngModel]="use.nome" 
+                        [ngModel]="item.value.nome" 
                         #nome="ngModel" 
                         type="text"           
                         name="nome"
@@ -21,7 +21,7 @@
                 <div class="form-group">
                     <input 
                         [class.is-invalid]="!email.valid && email.touched" 
-                        [ngModel]="use.email" 
+                        [ngModel]="item.value.email" 
                         #email="ngModel" 
                         email 
                         required
@@ -36,7 +36,7 @@
                 <div class="form-group">
                     <input 
                         [class.is-invalid]="!cpf.valid && cpf.touched" 
-                        [ngModel]="use.cpf" 
+                        [ngModel]="item.value.cpf" 
                         #cpf="ngModel"
                         required
                         name="cpf"

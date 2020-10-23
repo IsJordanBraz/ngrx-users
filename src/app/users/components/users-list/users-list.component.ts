@@ -24,7 +24,7 @@ export class UsersListComponent implements OnInit {
   }
 
   loadUsers() {
-    this.users$ = this.store.pipe(select(selectUsers))
+    this.users$ = this.store.select(selectUsers);
   }
 
   deleteUsers(id: string) {

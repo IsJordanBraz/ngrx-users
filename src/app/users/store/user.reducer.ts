@@ -79,6 +79,7 @@ const usersReducer = createReducer(
 export function reducer(state: UserState | undefined, action: Action) {
   return usersReducer(state, action);
 }
+export const getUser = (state: UserState) => state.selectedUser;
 
 export const {
   selectIds,
