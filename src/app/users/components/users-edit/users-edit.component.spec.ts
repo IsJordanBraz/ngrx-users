@@ -11,7 +11,7 @@ import { User } from '../../models/users';
 
 const selectThisUsers: User = {
   id: 1,
-  nome: 'jordan',
+  name: 'jordan',
   email: '0000',
   cpf: '1111'
 }

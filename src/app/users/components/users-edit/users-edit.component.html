@@ -2,26 +2,26 @@
     <div class="row justify-content-center">
         <div class="col-5 mt-4">
             <h4>ATUALIZAR CLIENTE</h4>
-            <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngFor="let item of selectedUser | keyvalue">
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="selectedUser">
                 <div class="form-group">
                     <input 
-                        [class.is-invalid]="!nome.valid && nome.touched" 
+                        [class.is-invalid]="!name.valid && name.touched" 
                         required
-                        [ngModel]="item.value.nome" 
-                        #nome="ngModel" 
+                        [ngModel]="selectedUser.name" 
+                        #name="ngModel" 
                         type="text"           
-                        name="nome"
+                        name="name"
                         class="form-control"
-                        id="nome"
+                        id="name"
                         placeholder="NOME COMPLETO">
-                    <div id="nome" class="invalid-feedback">
+                    <div id="name" class="invalid-feedback">
                         Nome é obrigatorio.
                     </div>
                 </div>
                 <div class="form-group">
                     <input 
                         [class.is-invalid]="!email.valid && email.touched" 
-                        [ngModel]="item.value.email" 
+                        [ngModel]="selectedUser.email" 
                         #email="ngModel" 
                         email 
                         required
@@ -36,7 +36,7 @@
                 <div class="form-group">
                     <input 
                         [class.is-invalid]="!cpf.valid && cpf.touched" 
-                        [ngModel]="item.value.cpf" 
+                        [ngModel]="selectedUser.cpf" 
                         #cpf="ngModel"
                         required
                         name="cpf"

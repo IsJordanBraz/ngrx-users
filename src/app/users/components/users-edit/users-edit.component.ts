@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Update } from '@ngrx/entity';
-import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { User } from '../../models/users';
 import { loadUser, updateUser } from '../../store/user.actions';
@@ -31,7 +30,7 @@ export class UsersEditComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     const update: Update<User> = {
-      id: this.selectedUser[0].id,
+      id: this.selectedUser.id,
       changes: form.value
     }
 

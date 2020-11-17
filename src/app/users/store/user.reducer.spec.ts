@@ -8,13 +8,13 @@ import { Update } from '@ngrx/entity';
 const usersList: User[] = [
   { 
     id: 1, 
-    nome: 'jordan', 
+    name: 'jordan', 
     cpf: '21.699.461-5', 
     email: 'jordan@gmail'
   },
   { 
     id: 2,
-    nome: 'Jordan Braz', 
+    name: 'Jordan Braz', 
     cpf: '21.699.461-5', 
     email: 'jordan@gmail'
   }
@@ -58,7 +58,7 @@ describe('Users Reducer', () => {
     it('should add a new user', () => {
       const addUser: User = {
         id: 1,
-        nome: 'jordan',
+        name: 'jordan',
         cpf: '21.699.461-5',
         email: 'jordan@gmail' 
       };
@@ -75,7 +75,7 @@ describe('Users Reducer', () => {
 
       const updateUser: User = { 
         id: 1, 
-        nome: 'Jordan Paiva', 
+        name: 'Jordan Paiva', 
         cpf: '21.699.461-5', 
         email: 'jordan@gmail.com'
       };

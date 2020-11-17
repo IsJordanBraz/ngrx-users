@@ -8,7 +8,7 @@ import { User } from '../../models/users';
 
 const selectThisUsers: User[] = [{
   id: 1,
-  nome: 'Jordan Braz',
+  name: 'Jordan Braz',
   email: 'jordan@gmail',
   cpf: '607.475.551-50'
 }]

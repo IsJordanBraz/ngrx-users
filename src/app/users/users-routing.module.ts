@@ -6,7 +6,7 @@ import { UsersAddComponent } from './components/users-add/users-add.component';
 import { UsersEditComponent } from './components/users-edit/users-edit.component';
 
 const routes: Routes = [
-  { path: 'cadastrar', component: UsersAddComponent },  
+  { path: 'cadastrar', component: UsersAddComponent },
   { path: 'editar/:id', component: UsersEditComponent },
   { path: '**', component: NotFoundComponent },  
 ];

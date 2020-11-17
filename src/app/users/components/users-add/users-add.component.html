@@ -5,16 +5,16 @@
             <form #f="ngForm" (ngSubmit)="onSubmit(f)">
                 <div class="form-group">
                     <input type="text"
-                        [class.is-invalid]="!nome.valid && nome.touched"
-                        #nome="ngModel"
+                        [class.is-invalid]="!name.valid && name.touched"
+                        #name="ngModel"
                         ngModel
                         required
-                        name="nome"
+                        name="name"
                         class="form-control"
-                        id="nome"
+                        id="name"
                         placeholder="NOME COMPLETO"
                     >
-                    <div id="nome" class="invalid-feedback">
+                    <div id="name" class="invalid-feedback">
                         Nome é obrigatorio.
                     </div>
                 </div>
