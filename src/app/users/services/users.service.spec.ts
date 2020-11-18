@@ -40,7 +40,7 @@ describe('UsersService', () => {
 
   it('deve buscar produto', fakeAsync(() => {
     const fakeBody = UsersStub.userStub;
-    service.getUser(5).subscribe(response => {      
+    service.getUser(5).subscribe(response => {
       expect(response.name).toEqual(fakeBody.name);
     });
   }));

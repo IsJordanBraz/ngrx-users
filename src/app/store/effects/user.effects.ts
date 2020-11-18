@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError, concatMap, tap } from 'rxjs/operators';
 
@@ -41,21 +41,21 @@ export class UsersEffects {
           )
         )
       ),
-      tap(() => this.router.navigate(["/"]))
+      tap(() => this.router.navigate(['/']))
     )
   );
 
-  updateUsers$ = createEffect(() => 
+  updateUsers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromUsersActions.updateUser),
       concatMap(action => this.usersService.updateUsers(
-        action.user.id, 
+        action.user.id,
         action.user.changes)
       ),
-      tap(() => this.router.navigate(["/"]))
+      tap(() => this.router.navigate(['/']))
     ),
     { dispatch: false }
-  )
+  );
 
   deleteUsers$ = createEffect(() => this.actions$.pipe(
     ofType(fromUsersActions.deleteUser),
@@ -68,7 +68,7 @@ export class UsersEffects {
   );
 
   constructor(
-    private actions$: Actions, 
+    private actions$: Actions,
     private usersService: UsersService,
     private router: Router
   ) {}

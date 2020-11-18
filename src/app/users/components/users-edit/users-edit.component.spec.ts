@@ -14,7 +14,7 @@ const selectThisUsers: User = {
   name: 'jordan',
   email: '0000',
   cpf: '1111'
-}
+};
 
 describe('UsersEditComponent', () => {
   let component: UsersEditComponent;
@@ -40,7 +40,6 @@ describe('UsersEditComponent', () => {
     mockStore = TestBed.inject(MockStore);
     mockUsernameSelector = mockStore.overrideSelector(fromSelector.selectedUser, selectThisUsers);
     fixture.detectChanges();
-    
   });
 
   it('should create', () => {

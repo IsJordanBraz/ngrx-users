@@ -28,7 +28,7 @@ export class UsersListComponent implements OnInit {
   }
 
   deleteUsers(id: string) {
-    this.store.dispatch(deleteUser({ id }))
+    this.store.dispatch(deleteUser({ id }));
   }
 
 }

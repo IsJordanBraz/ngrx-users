@@ -24,7 +24,7 @@ export class UsersEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(loadUser({ id: this.route.snapshot.paramMap.get("id") }));
+    this.store.dispatch(loadUser({ id: this.route.snapshot.paramMap.get('id') }));
     this.store.select(selectedUser).subscribe(user => this.selectedUser = user);
   }
 
@@ -32,8 +32,8 @@ export class UsersEditComponent implements OnInit {
     const update: Update<User> = {
       id: this.selectedUser.id,
       changes: form.value
-    }
+    };
 
-    this.store.dispatch(updateUser({ user: update }))
+    this.store.dispatch(updateUser({ user: update }));
   }
 }

@@ -24,55 +24,44 @@ export const initialState: UserState = adapter.getInitialState({
   selectedUser: undefined
 });
 
-
 const usersReducer = createReducer(
   initialState,
-  on(UsersActions.addUserSuccess, (state, action) => 
+  on(UsersActions.addUserSuccess, (state, action) =>
     adapter.addOne(action.user, state),
   ),
-  on(UsersActions.addUserFailure, (state, action) => {
-      return {
+  on(UsersActions.addUserFailure, (state, action) => ({
         ...state,
         error: action.error
-      }
-    }
+      })
   ),
-  on(UsersActions.loadUsersSucess, (state, action) => 
+  on(UsersActions.loadUsersSucess, (state, action) =>
     adapter.setAll(action.users, state)
   ),
-  on(UsersActions.loadUsersFailure, (state, action) => {
-      return {
+  on(UsersActions.loadUsersFailure, (state, action) => ({
         ...state,
         error: action.error
-      }
-    }
-  ),  
-  on(UsersActions.loadUserSuccess, (state, action) => {
-      return {
+      })
+  ),
+  on(UsersActions.loadUserSuccess, (state, action) => ({
         ...state,
         selectedUser: action.selectedUser
-      }
-    }
+      })
   ),
-  on(UsersActions.loadUserFailure, (state, action) => {
-      return {
+  on(UsersActions.loadUserFailure, (state, action) => ({
         ...state,
         error: action.error
-      }
-    }
+      })
   ),
-  on(UsersActions.updateUser, (state, action) => 
+  on(UsersActions.updateUser, (state, action) =>
     adapter.updateOne(action.user, state)
-  ),  
-  on(UsersActions.deleteUserSuccess, (state, action) => 
+  ),
+  on(UsersActions.deleteUserSuccess, (state, action) =>
     adapter.removeOne(action.id, state)
   ),
-  on(UsersActions.deleteUserFailure, (state, action) => {
-      return {
+  on(UsersActions.deleteUserFailure, (state, action) => ({
         ...state,
         error: action.error
-      }
-    }
+      })
   ),
 );
 

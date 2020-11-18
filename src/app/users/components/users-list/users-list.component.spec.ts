@@ -12,7 +12,7 @@ const selectThisUsers: User[] = [{
   name: 'Jordan Braz',
   email: 'jordan@gmail',
   cpf: '607.475.551-50'
-}]
+}];
 
 describe('UsersListComponent', () => {
   let component: UsersListComponent;
@@ -23,7 +23,7 @@ describe('UsersListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [provideMockStore()],
-      declarations: [ UsersListComponent ],      
+      declarations: [ UsersListComponent ],
     })
     .compileComponents();
   });
@@ -42,14 +42,14 @@ describe('UsersListComponent', () => {
 
   it('should test table', () => {
     fixture.whenStable().then(() => {
-      let tableRows = fixture.nativeElement.querySelectorAll('tr');
+      const tableRows = fixture.nativeElement.querySelectorAll('tr');
       expect(tableRows.length).toBe(2);
 
-      let row1 = tableRows[1];
+      const row1 = tableRows[1];
       expect(row1.cells[0].innerHTML).toBe('1');
       expect(row1.cells[1].innerHTML).toBe('Jordan Braz');
       expect(row1.cells[2].innerHTML).toBe('jordan@gmail');
-      expect(row1.cells[3].innerHTML).toBe('607.475.551-50');      
+      expect(row1.cells[3].innerHTML).toBe('607.475.551-50');
     });
     expect(component).toBeTruthy();
   });
