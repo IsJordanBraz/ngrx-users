@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 
 import { UsersAddComponent } from './users-add.component';
-import * as fromUserReducer from '../../store/user.reducer';
+import * as fromUserReducer from '../../../store/reducers/user.reducer';
 import { FormsModule } from '@angular/forms';
 
 describe('UsersAddComponent', () => {

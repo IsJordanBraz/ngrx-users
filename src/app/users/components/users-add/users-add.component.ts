@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { Store } from '@ngrx/store';
 
-import { addUser } from '../../store/user.actions';
-import { UserState } from '../../store/user.reducer';
+import { addUser } from '../../../store/actions/user.actions';
+import { UserState } from '../../../store/reducers/user.reducer';
 
 @Component({
   selector: 'app-users-add',

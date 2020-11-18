@@ -4,10 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Update } from '@ngrx/entity';
 import { Store } from '@ngrx/store';
 
-import { User } from '../../models/users';
-import { loadUser, updateUser } from '../../store/user.actions';
-import { UserState } from '../../store/user.reducer';
-import { selectedUser } from '../../store/user.selecters';
+import { User } from '../../../store/interfaces/users';
+import { loadUser, updateUser } from '../../../store/actions/user.actions';
+import { UserState } from '../../../store/reducers/user.reducer';
+import { selectedUser } from '../../../store/selectors/user.selectors';
 
 @Component({
   selector: 'app-users-edit',

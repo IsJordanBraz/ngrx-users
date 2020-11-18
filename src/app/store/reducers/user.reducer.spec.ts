@@ -1,5 +1,5 @@
-import { User } from '../models/users';
-import * as fromUserActions from './user.actions';
+import { User } from '../interfaces/users';
+import * as fromUserActions from '../actions/user.actions';
 import { reducer, initialState } from './user.reducer';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { TestBed } from '@angular/core/testing';

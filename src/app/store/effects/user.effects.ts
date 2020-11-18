@@ -4,9 +4,8 @@ import { Router } from "@angular/router";
 import { of } from 'rxjs';
 import { map, mergeMap, catchError, concatMap, tap } from 'rxjs/operators';
 
-import { UsersService } from '../services/users.service';
-import * as fromUsersActions from './user.actions';
-
+import * as fromUsersActions from '../actions/user.actions';
+import { UsersService } from '../../users/services/users.service';
 
 @Injectable()
 export class UsersEffects {

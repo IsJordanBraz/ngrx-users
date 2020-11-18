@@ -1,8 +1,8 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-import { User } from '../models/users';
-import * as UsersActions from './user.actions';
+import { User } from '../interfaces/users';
+import * as UsersActions from '../actions/user.actions';
 
 export const usersesFeatureKey = 'users';
 

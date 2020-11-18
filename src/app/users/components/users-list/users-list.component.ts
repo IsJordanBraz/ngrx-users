@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { User } from '../../models/users';
-import { UserState } from '../../store/user.reducer';
-import { loadUsers, deleteUser } from '../../store/user.actions';
-import { selectUsers } from '../../store/user.selecters';
+import { User } from '../../../store/interfaces/users';
+import { UserState } from '../../../store/reducers/user.reducer';
+import { loadUsers, deleteUser } from '../../../store/actions/user.actions';
+import { selectUsers } from '../../../store/selectors/user.selectors';
 
 @Component({
   selector: 'app-users-list',

@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { User } from '../models/users';
+import { User } from '../interfaces/users';
 
 export const loadUsers = createAction(
   '[Users List Component] Load Users'

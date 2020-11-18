@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MemoizedSelector } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
+
 import { UsersListComponent } from './users-list.component';
-import * as fromReducer from '../../store/user.reducer';
-import * as fromSelector from '../../store/user.selecters';
-import { User } from '../../models/users';
+import * as fromReducer from '../../../store/reducers/user.reducer';
+import * as fromSelector from '../../../store/selectors/user.selectors';
+import { User } from '../../../store/interfaces/users';
 
 const selectThisUsers: User[] = [{
   id: 1,
