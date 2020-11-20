@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { UsersEditComponent } from './users-edit.component';
 import * as fromReducer from '../../../store/reducers/user.reducer';
 import * as fromSelector from '../../../store/selectors/user.selectors';
-import { User } from '../../../store/interfaces/users';
+import { User } from '../../../store/interfaces/user';
 
 const selectThisUsers: User = {
   id: 1,

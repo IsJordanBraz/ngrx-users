@@ -2,7 +2,7 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { TestBed } from '@angular/core/testing';
 import { Update } from '@ngrx/entity';
 
-import { User } from '../interfaces/users';
+import { User } from '../interfaces/user';
 import * as fromUserActions from '../actions/user.actions';
 import { reducer, initialState } from './user.reducer';
 

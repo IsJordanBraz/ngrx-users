@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { User } from '../../../store/interfaces/users';
+import { User } from '../../../store/interfaces/user';
 import { UserState } from '../../../store/reducers/user.reducer';
 import { loadUsers, deleteUser } from '../../../store/actions/user.actions';
 import { selectUsers } from '../../../store/selectors/user.selectors';

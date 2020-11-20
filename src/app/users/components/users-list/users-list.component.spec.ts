@@ -5,7 +5,7 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { UsersListComponent } from './users-list.component';
 import * as fromReducer from '../../../store/reducers/user.reducer';
 import * as fromSelector from '../../../store/selectors/user.selectors';
-import { User } from '../../../store/interfaces/users';
+import { User } from '../../../store/interfaces/user';
 
 const selectThisUsers: User[] = [{
   id: 1,

@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-import { User } from '../interfaces/users';
+import { User } from '../interfaces/user';
 import * as UsersActions from '../actions/user.actions';
 
 export const usersesFeatureKey = 'users';
@@ -11,6 +11,7 @@ export interface UserState extends EntityState<User> {
   selectedUser: User;
 }
 
+// eslint-disable-next-line func-style, prefer-arrow/prefer-arrow-functions
 export function selectUserId(user: User): number {
   return user.id;
 }
@@ -65,6 +66,7 @@ const usersReducer = createReducer(
   ),
 );
 
+// eslint-disable-next-line func-style, prefer-arrow/prefer-arrow-functions
 export function reducer(state: UserState | undefined, action: Action) {
   return usersReducer(state, action);
 }
