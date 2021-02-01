@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Update } from '@ngrx/entity';
-import { Store } from '@ngrx/store';
-
-import { User } from '../../../store/interfaces/user';
-import { loadUser, updateUser } from '../../../store/actions/user.actions';
-import { UserState } from '../../../store/reducers/user.reducer';
-import { selectedUser } from '../../../store/selectors/user.selectors';
+import { User } from 'src/app/interfaces/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-users-edit',
@@ -16,24 +11,26 @@ import { selectedUser } from '../../../store/selectors/user.selectors';
 })
 export class UsersEditComponent implements OnInit {
 
-  selectedUser: any;
+  selectedUser: User;
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store<UserState>,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(loadUser({ id: this.route.snapshot.paramMap.get('id') }));
-    this.store.select(selectedUser).subscribe(user => this.selectedUser = user);
+    this.userService.getByKey(this.route.snapshot.paramMap.get('id')).subscribe(
+      user => this.selectedUser = user);
   }
 
   onSubmit(form: NgForm) {
-    const update: Update<User> = {
+    const updatedUser: User = {
       id: this.selectedUser.id,
-      changes: form.value
+      name: form.value.name,
+      cpf: form.value.cpf,
+      email: form.value.email
     };
 
-    this.store.dispatch(updateUser({ user: update }));
+    this.userService.update(updatedUser);
   }
 }

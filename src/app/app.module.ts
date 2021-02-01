@@ -12,6 +12,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from './shared/shared.module';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
+import { entityConfig } from './entity-metadata';
+
+import { defaultDataServiceConfig } from './DefaultDataServiceConfig';
 
 @NgModule({
   declarations: [
@@ -27,9 +31,10 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot()
+    StoreRouterConnectingModule.forRoot(),
+    EntityDataModule.forRoot(entityConfig)
   ],
-  providers: [],
+  providers: [{provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
