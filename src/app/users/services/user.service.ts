@@ -10,6 +10,6 @@ import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } f
 export class UserService extends EntityCollectionServiceBase<User>{
 
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
-    super('user', serviceElementsFactory);
+    super('User', serviceElementsFactory);
   }
 }
